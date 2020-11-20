@@ -1,0 +1,7 @@
+{
+  "name": "numerological",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
