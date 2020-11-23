@@ -1,6 +1,6 @@
 {
-  "name": "numerological",
-  "version": "0.0.1",
+  "name": "wecalc",
+  "version": "1.0.1",
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
   "scripts": {
@@ -19,6 +19,7 @@
     "@angular/platform-browser": "~10.0.0",
     "@angular/platform-browser-dynamic": "~10.0.0",
     "@angular/router": "~10.0.0",
+    "@capacitor/android": "^2.4.3",
     "@capacitor/core": "2.4.3",
     "@ionic-native/core": "^5.0.0",
     "@ionic-native/splash-screen": "^5.0.0",
@@ -36,6 +37,7 @@
     "@angular/language-service": "~10.0.0",
     "@capacitor/cli": "2.4.3",
     "@ionic/angular-toolkit": "^2.3.0",
+    "@ionic/lab": "3.2.9",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",

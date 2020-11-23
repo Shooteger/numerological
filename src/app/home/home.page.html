@@ -1,20 +1,80 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+<!--
+<ion-header translucent>
+  <ion-toolbar style="text-align: center;">
+    <ion-title>WeCalc</ion-title>
   </ion-toolbar>
 </ion-header>
+--> 
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content fullscreen>
+  <ion-card>
+    <ion-card-header style="text-align: center;">
+      <ion-card-subtitle>Calc your world</ion-card-subtitle>
+      <ion-card-title>Numerologic</ion-card-title>
+    </ion-card-header>
+  </ion-card>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+
+  <ion-item>
+    <ion-label floating  ><b>Name: </b></ion-label>
+    <ion-input type="text" [(ngModel)]='fullname' name="fullname" (ionChange)="setName($event.target.value) "></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Select Date</ion-label>
+    <ion-datetime displayFormat="DD MMM YYYY" placeholder="01 Jan 2000" [(ngModel)]='birthday' 
+                  (ionFocus)="buttonClicked = false" (ionChange)="setBirthday($event.target.value)"></ion-datetime>
+  </ion-item>
+  
+  <ion-button expand="block" name="submitButton" style="width: 80%; margin: auto; margin-top: 5%;" 
+              (click)="calcAll()" disabled={{isenabled}}>Calculate</ion-button>
+  
+  <hr>
+  <hr>
+
+  <ion-card class="resultCard" *ngIf="buttonClicked">
+    <ion-card-header style="text-align: center;">
+      <ion-card-title>{{ fullname }}:</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-label floating ><b>Day of birth: </b></ion-label>
+      <ion-text class=" text_color" > {{bayofbirth}} </ion-text>
+      <br>
+      <ion-label floating ><b>Life journey: </b></ion-label>
+      <ion-text class=" text_color" > {{lifejouney}} </ion-text>
+      <br>
+      <ion-label floating><b>Expression: </b></ion-label>
+      <ion-text class=" text_color"> {{expression}} </ion-text>
+      <br>
+      <ion-label floating><b>Soul wish: </b></ion-label>
+      <ion-text class=" text_color"> {{soulwish}} </ion-text>
+      <br>
+      <ion-label floating><b>Soul focus: </b></ion-label>
+      <ion-text class=" text_color"> {{soulfocus}} </ion-text>
+      <br>
+      <ion-label floating><b>Personal year: </b></ion-label>
+      <ion-text class=" text_color"> {{personalyear}} </ion-text>
+      <br>
+      <ion-label floating><b>Strength day: </b></ion-label>
+      <ion-text class=" text_color"> {{strengthday}} </ion-text>
+      <br>
+      <ion-label floating><b>Lucky days: </b></ion-label>
+      <ion-text class=" text_color"> {{luckydays}} </ion-text>
+      <br>
+      <ion-label floating><b>Lessons to learn:  </b></ion-label>
+      <ion-text class=" text_color"> {{lessonstolearn}} </ion-text>
+      <br>
+      <ion-label floating><b>All Lessons:</b></ion-label>
+      <ion-text style="white-space: pre-line"> {{lessons_of_occuring}} </ion-text>
+      <br>
+      <ion-label floating><b>Career path: (In development...) </b></ion-label>
+      <ion-text class=" text_color">  </ion-text>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
+
+
+
+
+<!-- presentActionSheet() for openen action sheet-->

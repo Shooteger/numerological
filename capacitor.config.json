@@ -1,6 +1,6 @@
 {
   "appId": "io.ionic.starter",
-  "appName": "numerological",
+  "appName": "WeCalc",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
