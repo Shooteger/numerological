@@ -1,8 +1,5 @@
-import { Component } from '@angular/core';
-import { NoPreloading } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { ActionSheetController } from '@ionic/angular';
-import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
-
 
 //NOCH NICHT IMPLEMENTIERT: LUCKY DAYS BEI SCHLATJAHREN FEBRUAR...
 
@@ -11,32 +8,32 @@ interface Lessons {
 }
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  selector: 'app-calculator',
+  templateUrl: './calculator.page.html',
+  styleUrls: ['./calculator.page.scss'],
 })
-export class HomePage {
+export class CalculatorPage implements OnInit {
+
   birthday = new Date().toISOString();
-  isenabled: boolean = true;
-  lessons: number[] = [];
-  buttonClicked: boolean = false;
+  isenabled: boolean;
+  lessons: number[];
+  buttonClicked: boolean;
 
-  fullname: string = "";
-  bayofbirth: string = "";
-  lifejouney: string = "";
-  expression: string = "";
-  soulwish: string = "";
-  soulfocus: string = "";
-  compensation: string = "";
-  strengthday: string = "";
-  lessonstolearn: string = "";
-  lessons_of_occuring: string = "";
-  personalyear: string = "";
-  luckydays: string = "";
-  careerpath: string[][] = [];
+  fullname: string;
+  bayofbirth: string;
+  lifejouney: string;
+  expression: string;
+  soulwish: string;
+  soulfocus: string;
+  compensation: string;
+  strengthday: string;
+  lessonstolearn: string;
+  lessons_of_occuring: string;
+  personalyear: string;
+  luckydays: string;
+  careerpath: string[][];
 
-  constructor(public actionSheetController: ActionSheetController) {}
-
+  constructor(public actionSheetController: ActionSheetController) { }
 
   //return the crossum of the given number
   //the parameter is a string
@@ -575,4 +572,25 @@ export class HomePage {
     });
     await actionSheet.present();
   }
+
+  ngOnInit() {
+    this.isenabled = true;
+    this.lessons = [];
+    this.buttonClicked = false;
+
+    this.fullname = "";
+    this.bayofbirth = "";
+    this.lifejouney = "";
+    this.expression = "";
+    this.soulwish = "";
+    this.soulfocus = "";
+    this.compensation = "";
+    this.strengthday = "";
+    this.lessonstolearn = "";
+    this.lessons_of_occuring = "";
+    this.personalyear = "";
+    this.luckydays = "";
+    this.careerpath = [];
+  }
+
 }

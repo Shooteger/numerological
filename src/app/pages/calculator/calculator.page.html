@@ -1,10 +1,11 @@
-<!--
-<ion-header translucent>
-  <ion-toolbar style="text-align: center;">
+<ion-header>
+  <ion-toolbar>
     <ion-title>WeCalc</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
---> 
 
 <ion-content fullscreen>
   <ion-card>
@@ -13,7 +14,6 @@
       <ion-card-title>Numerologic</ion-card-title>
     </ion-card-header>
   </ion-card>
-
 
   <ion-item>
     <ion-label floating  ><b>Name: </b></ion-label>
@@ -73,8 +73,5 @@
     </ion-card-content>
   </ion-card>
 </ion-content>
-
-
-
 
 <!-- presentActionSheet() for openen action sheet-->
