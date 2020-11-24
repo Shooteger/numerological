@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActionSheetController } from '@ionic/angular';
 
 //NOCH NICHT IMPLEMENTIERT: LUCKY DAYS BEI SCHLATJAHREN FEBRUAR...
+//Y - Regel ka wie die geht, nachlesen...
 
 interface Lessons {
   times_learned: number;
