@@ -3,7 +3,7 @@ import { ActionSheetController } from '@ionic/angular';
 
 //NOCH NICHT IMPLEMENTIERT: LUCKY DAYS BEI SCHLATJAHREN FEBRUAR...
 //Y - Regel ka wie die geht, nachlesen...
-
+//Ausgleich Expression -> keine Schulzahl und meisterzahl reduziert...
 interface Lessons {
   times_learned: number;
 }
@@ -234,6 +234,17 @@ export class CalculatorPage implements OnInit {
     }
   }
 
+  syllableCal (word) {
+    word = word.toLowerCase();                                     
+    word = word.replace(/(?:[^laeiouy]|ed|[^laeiouy]e)$/, '');
+    word = word.replace(/^y/, '');
+    var syl = word.match(/[aeiouy]{1,2}/gi);
+    if(syl)
+    {
+        return syl;
+    }
+  }
+
   //returns numerological soul wish 
   soulWishCal(name) {
     let res: string[] = []; 
@@ -251,21 +262,64 @@ export class CalculatorPage implements OnInit {
     cnt = 0;
     let nameToNum: number[] = [];
     let tmpNumber: number;
+    let tmpSyl: string[];
     while (cnt < res.length) {
       tmpNumber = 0;
-      for (var i = 0; i < res[cnt].length; i++) {
-        if ((res[cnt].charAt(i)).toUpperCase() == 'A') {
-          tmpNumber += 1;
-        } else if ((res[cnt].charAt(i)).toUpperCase() == 'E') {
-          tmpNumber += 5;
-        } else if ((res[cnt].charAt(i)).toUpperCase() == 'I') {
-          tmpNumber += 9;
-        } else if ((res[cnt].charAt(i)).toUpperCase() == 'O') {
-          tmpNumber += 6;
-        } else if ((res[cnt].charAt(i)).toUpperCase() == 'U') {
-          tmpNumber += 3;
+      
+      //console.log(this.syllableCal(res[cnt]));
+      tmpSyl = this.syllableCal(res[cnt]);
+      
+      if (tmpSyl) {
+        for (var i = 0; i < tmpSyl.length; i++) {
+          if (tmpSyl[i].length == 2) { 
+            if ((tmpSyl[i].charAt(0)) == 'a' && tmpSyl[i].charAt(1) == 'y') {
+              tmpNumber += 8;
+            } else if ((tmpSyl[i].charAt(0)) == 'e' && tmpSyl[i].charAt(1) == 'y') {
+              tmpNumber += 12;
+            }  else if ((tmpSyl[i].charAt(0)) == 'i' && tmpSyl[i].charAt(1) == 'y') {
+              tmpNumber += 16;
+            }  else if ((tmpSyl[i].charAt(0)) == 'o' && tmpSyl[i].charAt(1) == 'y') {
+              tmpNumber += 13;
+            }  else if ((tmpSyl[i].charAt(0)) == 'u' && tmpSyl[i].charAt(1) == 'y') {
+              tmpNumber += 10;
+            }
+          } else {
+            if (tmpSyl[i] == 'y') {
+              tmpNumber += 7;
+            }
+          }
+        }
+
+        for (var i = 0; i < res[cnt].length; i++) {
+          if ((res[cnt].charAt(i)).toUpperCase() == 'A') {
+            if ((res[cnt].charAt(i+1)).toUpperCase() == 'W') {
+              tmpNumber += 5;
+            }
+            tmpNumber += 1;
+          } else if ((res[cnt].charAt(i)).toUpperCase() == 'E') {
+            if ((res[cnt].charAt(i+1)).toUpperCase() == 'W') {
+              tmpNumber += 5;
+            }
+            tmpNumber += 5;
+          } else if ((res[cnt].charAt(i)).toUpperCase() == 'I') {
+            if ((res[cnt].charAt(i+1)).toUpperCase() == 'W') {
+              tmpNumber += 5;
+            }
+            tmpNumber += 9;
+          } else if ((res[cnt].charAt(i)).toUpperCase() == 'O' || (res[cnt].charAt(i)).toUpperCase() == 'Ö') {
+            if ((res[cnt].charAt(i+1)).toUpperCase() == 'W') {
+              tmpNumber += 5;
+            }
+            tmpNumber += 6;
+          } else if ((res[cnt].charAt(i)).toUpperCase() == 'U' || (res[cnt].charAt(i)).toUpperCase() == 'Ü') {
+            if ((res[cnt].charAt(i+1)).toUpperCase() == 'W') {
+              tmpNumber += 5;
+            }
+            tmpNumber += 3;
+          }
         }
       }
+      //hier wieder in while schleife
       nameToNum.push(tmpNumber);
       cnt++;
     }
@@ -324,13 +378,15 @@ export class CalculatorPage implements OnInit {
         return 6;
       } else if ((name.charAt(i)).toUpperCase() == 'U') {
         return 3;
+      } else if ((name.charAt(i)).toUpperCase() == 'Y') {
+        return 7;
       }
     }
     return 0;
   }
 
   //calculates and returns the compensation of a person, gets the finish
-  //calculated of lofejouney and expression as parameter
+  //calculated of lifejourney and expression as parameter
   compensationCal() {
     let tmpEx: number = Number(this.expression);;
     let tmpLJ: number = Number(this.lifejouney);;
@@ -380,20 +436,6 @@ export class CalculatorPage implements OnInit {
     while(true) {
       if (tmpComp <= 9) {
         return tmpComp;
-      } else if (tmpComp == 11) {
-        return "11/2";
-      } else if (tmpComp == 13) {
-        return "13/4";
-      } else if (tmpComp == 14) {
-        return "14/5";
-      } else if (tmpComp == 16) {
-        return "16/7";
-      } else if (tmpComp == 19) {
-        return "19/10/1";
-      } else if (tmpComp == 22) {
-        return "22/4";
-      } else if (tmpComp == 33) {
-        return "33/6";
       } else {
         tmpComp = this.crosssumOne(tmpComp.toString());
       }
