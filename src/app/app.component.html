@@ -6,23 +6,30 @@
             </ion-toolbar>
         </ion-header>
         <ion-content>
-            <ion-list>
+          <div class="menu-header-bg"></div>
+          <div class="header-content">
+            <ion-label>
+              <p class="p1">Numerologic</p>
+              <p class="p2">Calculator</p>
+            </ion-label>
+          </div>
+            <ion-list class="menu-items" lines="none">
                 <ion-menu-toggle>
-                  <ion-item routerLink="/calculator">
+                  <ion-item routerLink="calculator" class="active">
                     <ion-label>Calculator</ion-label>
                     <ion-icon name="grid" slot="start"></ion-icon>
                   </ion-item>
                 </ion-menu-toggle>
                   
                 <ion-menu-toggle>
-                  <ion-item routerLink="library" class="ion-item-line">
+                  <ion-item routerLink="library">
                     <ion-label>Library</ion-label>
                     <ion-icon name="book" slot="start"></ion-icon>
                   </ion-item>
                 </ion-menu-toggle>
 
                 <ion-menu-toggle>
-                  <ion-item routerLink="documentation" class="ion-item-line">
+                  <ion-item routerLink="documentation">
                     <ion-label>Manual</ion-label>
                     <ion-icon name="document" slot="start"></ion-icon>
                   </ion-item>
@@ -35,17 +42,15 @@
                   </ion-item>
                 </ion-menu-toggle>
 
+                <ion-menu-toggle>
+                  <ion-item routerLink="settings">
+                    <ion-label>Settings</ion-label>
+                    <ion-icon name="settings" slot="start"></ion-icon>
+                  </ion-item>
+                </ion-menu-toggle>
+
             </ion-list>
           </ion-content>
-
-          <ion-menu-toggle>
-            <ion-footer class="bar-stable">
-              <ion-item routerLink="" style="right: 0; width: 35%; position: fixed; bottom: 0; background: none;">
-                <ion-icon name="settings" slot="end"></ion-icon>
-              </ion-item>
-            </ion-footer>
-          </ion-menu-toggle>
-
     </ion-menu>
     <ion-router-outlet id="main"></ion-router-outlet>
 </ion-app>
