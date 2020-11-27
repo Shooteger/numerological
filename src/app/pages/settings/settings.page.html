@@ -19,7 +19,7 @@
       <ion-col size="12">
         <ion-item>
           <ion-label>Dark-Mode aktiviert:</ion-label>
-          <ion-toggle (ionChange)="onToogleTheme($event)"></ion-toggle>
+          <ion-toggle (ionChange)="onToogleTheme($event)" checked={{switchEnabled}}></ion-toggle>
         </ion-item>
       </ion-col>
     </ion-row>
