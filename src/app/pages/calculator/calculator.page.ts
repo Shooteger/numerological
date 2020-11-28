@@ -570,7 +570,7 @@ export class CalculatorPage implements OnInit {
 
   dayofbirthCal() {
     let tmpDay: number = Number((this.birthday.split('T')[0]).split('-')[2]);
-    console.log(tmpDay);
+    console.log("before while: " + tmpDay);
     while(true) {
       if (tmpDay <= 9) {
         return tmpDay.toString();
@@ -589,7 +589,9 @@ export class CalculatorPage implements OnInit {
       } else if (tmpDay == 33) {
         return "33/6";
       } else {
-        tmpDay = this.crosssumOne((this.birthday.split('T')[0]).split('-')[2]);
+        console.log(tmpDay);
+        tmpDay = this.crosssumOne(tmpDay.toString());
+        console.log(tmpDay);
       }
     }
   }
@@ -597,7 +599,6 @@ export class CalculatorPage implements OnInit {
   calcAll() {
     //main numerological numbers
     this.dayofbirth = this.dayofbirthCal();
-    //console.log(this.dayofbirthCal());
     this.lifejouney = (this.crosssumBirthday((this.birthday.split('T')[0]).split('-')[2], 
                           (this.birthday.split('T')[0]).split('-')[1], 
                           (this.birthday.split('T')[0]).split('-')[0])).toString();
@@ -615,6 +616,9 @@ export class CalculatorPage implements OnInit {
     this.careerpath;
     //displays and hides result card in html
     this.buttonClicked = !this.buttonClicked;
+    if (!this.buttonClicked) {
+      this.lessons_of_occuring = "";
+    }
   }
 
   async presentActionSheet() {
