@@ -22,7 +22,7 @@
 
   <ion-item>
     <ion-label>Select Date</ion-label>
-    <ion-datetime displayFormat="DD MMM YYYY" placeholder="01 Jan 2000" [(ngModel)]='birthday' 
+    <ion-datetime displayFormat="DD MMM YYYY" placeholder="01 Jan 2000" [(ngModel)]='birthday' max="2100-12-31"
                   (ionFocus)="buttonClicked = false" (ionChange)="setBirthday($event.target.value)"></ion-datetime>
   </ion-item>
   
@@ -39,7 +39,7 @@
 
     <ion-card-content>
       <ion-label floating ><b>Day of birth: </b></ion-label>
-      <ion-text class=" text_color" > {{bayofbirth}} </ion-text>
+      <ion-text class=" text_color" > {{dayofbirth}} </ion-text>
       <br>
       <ion-label floating ><b>Life journey: </b></ion-label>
       <ion-text class=" text_color" > {{lifejouney}} </ion-text>
@@ -53,7 +53,7 @@
       <ion-label floating><b>Soul focus: </b></ion-label>
       <ion-text class=" text_color"> {{soulfocus}} </ion-text>
       <br>
-      <ion-label floating><b>Soul focus: </b></ion-label>
+      <ion-label floating><b>Compensation: </b></ion-label>
       <ion-text class=" text_color"> {{compensation}} </ion-text>
       <br>
       <ion-label floating><b>Personal year: </b></ion-label>

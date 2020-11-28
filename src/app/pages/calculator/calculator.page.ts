@@ -21,7 +21,7 @@ export class CalculatorPage implements OnInit {
   buttonClicked: boolean;
 
   fullname: string;
-  bayofbirth: string;
+  dayofbirth: string;
   lifejouney: string;
   expression: string;
   soulwish: string;
@@ -568,13 +568,39 @@ export class CalculatorPage implements OnInit {
     return luckdays;
   }
 
+  dayofbirthCal() {
+    let tmpDay: number = Number((this.birthday.split('T')[0]).split('-')[2]);
+    console.log(tmpDay);
+    while(true) {
+      if (tmpDay <= 9) {
+        return tmpDay.toString();
+      } else if (tmpDay == 11) {
+        return "11/2";
+      } else if (tmpDay == 13) {
+        return "13/4";
+      } else if (tmpDay == 14) {
+        return "14/5";
+      } else if (tmpDay == 16) {
+        return "16/7";
+      } else if (tmpDay == 19) {
+        return "19/10/1";
+      } else if (tmpDay == 22) {
+        return "22/4";
+      } else if (tmpDay == 33) {
+        return "33/6";
+      } else {
+        tmpDay = this.crosssumOne((this.birthday.split('T')[0]).split('-')[2]);
+      }
+    }
+  }
+
   calcAll() {
     //main numerological numbers
-    this.bayofbirth = (this.crosssumOne((this.birthday.split('T')[0]).split('-')[2])).toString();
+    this.dayofbirth = this.dayofbirthCal();
+    //console.log(this.dayofbirthCal());
     this.lifejouney = (this.crosssumBirthday((this.birthday.split('T')[0]).split('-')[2], 
                           (this.birthday.split('T')[0]).split('-')[1], 
                           (this.birthday.split('T')[0]).split('-')[0])).toString();
-    console.log("lj:" + this.lifejouney);
     this.expression = (this.expressionCal(this.fullname)).toString();
     this.soulwish = (this.soulWishCal(this.fullname)).toString();
     this.soulfocus = (this.soulFocusCal(this.fullname)).toString();
@@ -622,7 +648,7 @@ export class CalculatorPage implements OnInit {
     this.buttonClicked = false;
 
     this.fullname = "";
-    this.bayofbirth = "";
+    this.dayofbirth = "";
     this.lifejouney = "";
     this.expression = "";
     this.soulwish = "";
