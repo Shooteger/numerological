@@ -517,6 +517,16 @@ export class CalculatorPage implements OnInit {
     if (lesson["l9"].times_learned == 0)
       lesson_zero += " 9,";
 
+    lesson["l1"] = { times_learned: 0};
+    lesson["l2"] = { times_learned: 0};
+    lesson["l3"] = { times_learned: 0};
+    lesson["l4"] = { times_learned: 0};
+    lesson["l5"] = { times_learned: 0};
+    lesson["l6"] = { times_learned: 0};
+    lesson["l7"] = { times_learned: 0};
+    lesson["l8"] = { times_learned: 0};
+    lesson["l9"] = { times_learned: 0};
+
     return lesson_zero;
   }
 
