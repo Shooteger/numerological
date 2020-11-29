@@ -626,9 +626,6 @@ export class CalculatorPage implements OnInit {
     this.careerpath;
     //displays and hides result card in html
     this.buttonClicked = !this.buttonClicked;
-    if (!this.buttonClicked) {
-      this.lessons_of_occuring = "";
-    }
   }
 
   async presentActionSheet() {
