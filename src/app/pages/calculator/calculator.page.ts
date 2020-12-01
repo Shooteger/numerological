@@ -79,8 +79,25 @@ export class CalculatorPage implements OnInit {
   //gets 3 string, day, month and year (given date of the datepicker)
   //and returns the the "lifejourney numerologic digit"
   crosssumBirthday(day, month, year) {
-    let dayCross: number = this.crosssumOne(day.toString());
-    let monthCross: number = this.crosssumOne(month.toString());
+    let dayCross: number;
+    let monthCross: number;
+
+    if (day == 11) {
+      dayCross = day;
+    } else if (day == 22) {
+      dayCross = day;
+    } else if (day == 33) {
+      dayCross = day;
+    } else  {
+      dayCross = this.crosssumOne(day.toString());
+    }
+
+    if (day == 11) {
+      monthCross = month
+    } else {
+      monthCross = this.crosssumOne(month.toString());;
+    }
+     
     let yearCross: number = this.crosssumOne(year.toString());
 
     //if block for karma year in birthday
@@ -92,7 +109,6 @@ export class CalculatorPage implements OnInit {
       if (yearCross <= 9) {
         break;
       } else if (yearCross == 11) {
-        yearCross = 2;
         break;
       } else if (yearCross == 13) {
         yearCross = 4;
@@ -107,10 +123,8 @@ export class CalculatorPage implements OnInit {
         yearCross = 1;
         break;
       } else if (yearCross == 22) {
-        yearCross = 4;
         break;
       } else if (yearCross == 33) {
-        yearCross = 6;
         break;
       } else {
         yearCross = this.crosssumOne(yearCross.toString());
@@ -445,7 +459,7 @@ export class CalculatorPage implements OnInit {
   //calculates and returns lessons which perosn has to learn AND
   //sets the count of how much lessons someone has in a global variabel
   lessonsToLearnCal() {
-    let lesson_zero: string = '';
+    let lesson_zero: string = "";
     let lesson: { [id: string] : Lessons; } = {};
     lesson["l1"] = { times_learned: 0};
     lesson["l2"] = { times_learned: 0};
@@ -478,25 +492,15 @@ export class CalculatorPage implements OnInit {
         lesson["l9"].times_learned += 1;
     }
 
-    this.careerpath = [['l1', lesson["l1"].times_learned.toString()],
-                       ['l2', lesson["l2"].times_learned.toString()],
-                       ['l3', lesson["l3"].times_learned.toString()],
-                       ['l4', lesson["l4"].times_learned.toString()],
-                       ['l5', lesson["l5"].times_learned.toString()],
-                       ['l6', lesson["l6"].times_learned.toString()],
-                       ['l7', lesson["l7"].times_learned.toString()],
-                       ['l8', lesson["l8"].times_learned.toString()],
-                       ['l9', lesson["l9"].times_learned.toString()]];
-
-      this.lessons_of_occuring += "\n1 occurs " + lesson["l1"].times_learned + " times\n";
-      this.lessons_of_occuring += "2 occurs " + lesson["l2"].times_learned + " times\n";
-      this.lessons_of_occuring += "3 occurs " + lesson["l3"].times_learned + " times\n";
-      this.lessons_of_occuring += "4 occurs " + lesson["l4"].times_learned + " times\n";
-      this.lessons_of_occuring += "5 occurs " + lesson["l5"].times_learned + " times\n";
-      this.lessons_of_occuring += "6 occurs " + lesson["l6"].times_learned + " times\n";
-      this.lessons_of_occuring += "7 occurs " + lesson["l7"].times_learned + " times\n";
-      this.lessons_of_occuring += "8 occurs " + lesson["l8"].times_learned + " times\n";
-      this.lessons_of_occuring += "9 occurs " + lesson["l9"].times_learned + " times";
+    this.lessons_of_occuring += "\n1 occurs " + lesson["l1"].times_learned + " times\n";
+    this.lessons_of_occuring += "2 occurs " + lesson["l2"].times_learned + " times\n";
+    this.lessons_of_occuring += "3 occurs " + lesson["l3"].times_learned + " times\n";
+    this.lessons_of_occuring += "4 occurs " + lesson["l4"].times_learned + " times\n";
+    this.lessons_of_occuring += "5 occurs " + lesson["l5"].times_learned + " times\n";
+    this.lessons_of_occuring += "6 occurs " + lesson["l6"].times_learned + " times\n";
+    this.lessons_of_occuring += "7 occurs " + lesson["l7"].times_learned + " times\n";
+    this.lessons_of_occuring += "8 occurs " + lesson["l8"].times_learned + " times\n";
+    this.lessons_of_occuring += "9 occurs " + lesson["l9"].times_learned + " times";
 
     if (lesson["l1"].times_learned == 0)
       lesson_zero += " 1,";
@@ -516,17 +520,8 @@ export class CalculatorPage implements OnInit {
       lesson_zero += " 8,";
     if (lesson["l9"].times_learned == 0)
       lesson_zero += " 9,";
-
-    lesson["l1"] = { times_learned: 0};
-    lesson["l2"] = { times_learned: 0};
-    lesson["l3"] = { times_learned: 0};
-    lesson["l4"] = { times_learned: 0};
-    lesson["l5"] = { times_learned: 0};
-    lesson["l6"] = { times_learned: 0};
-    lesson["l7"] = { times_learned: 0};
-    lesson["l8"] = { times_learned: 0};
-    lesson["l9"] = { times_learned: 0};
-
+  
+    //delete lesson["l9"];
     return lesson_zero;
   }
 
@@ -623,9 +618,12 @@ export class CalculatorPage implements OnInit {
     this.luckydays = this.lucky_days(Number((this.birthday.split('T')[0]).split('-')[2]),
                                      Number((this.birthday.split('T')[0]).split('-')[1]));
     //NEEDS TO BE IMPLANTATED
-    this.careerpath;
+    //this.careerpath;
     //displays and hides result card in html
     this.buttonClicked = !this.buttonClicked;
+    if (this.buttonClicked == false) {
+      this.lessons_of_occuring = "";
+    }
   }
 
   async presentActionSheet() {
