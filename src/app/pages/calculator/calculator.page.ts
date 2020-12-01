@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
 import { ActionSheetController } from '@ionic/angular';
 
 //NOCH NICHT IMPLEMENTIERT: LUCKY DAYS BEI SCHLATJAHREN FEBRUAR...
@@ -83,25 +83,22 @@ export class CalculatorPage implements OnInit {
     let monthCross: number;
 
     if (day == 11) {
-      dayCross = day;
+      dayCross = 11;
     } else if (day == 22) {
-      dayCross = day;
+      dayCross = 22;
     } else if (day == 33) {
-      dayCross = day;
+      dayCross = 33;
     } else  {
       dayCross = this.crosssumOne(day.toString());
     }
 
-    if (day == 11) {
-      monthCross = month
+    if (month == 11) {
+      monthCross = 11
     } else {
       monthCross = this.crosssumOne(month.toString());;
     }
-     
     let yearCross: number = this.crosssumOne(year.toString());
-
-    //if block for karma year in birthday
-    if (dayCross == 10) {
+    if (day == 10) {
       dayCross = 1;
     }
 
@@ -130,7 +127,12 @@ export class CalculatorPage implements OnInit {
         yearCross = this.crosssumOne(yearCross.toString());
       }
     }
-    let cross: number = dayCross + monthCross + yearCross;
+
+    console.log("day: " + dayCross + " month: " + monthCross + " year: " + yearCross);
+    let cross: number = (dayCross + monthCross + yearCross);
+    //console.log(cross);
+    console.log((dayCross + monthCross));
+    
     while(true) {
       if (cross <= 9) {
         return cross.toString();
