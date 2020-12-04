@@ -128,10 +128,7 @@ export class CalculatorPage implements OnInit {
       }
     }
 
-    console.log("day: " + dayCross + " month: " + monthCross + " year: " + yearCross);
     let cross: number = (dayCross + monthCross + yearCross);
-    //console.log(cross);
-    console.log((dayCross + monthCross));
     
     while(true) {
       if (cross <= 9) {
@@ -195,6 +192,7 @@ export class CalculatorPage implements OnInit {
       cnt++;
     }
 
+    
     cnt = 0;
     let nameToNum: number[] = [];
     let tmpNumber: number;
@@ -207,7 +205,7 @@ export class CalculatorPage implements OnInit {
       nameToNum.push(tmpNumber);
       cnt++;
     }
-
+     
     cnt = 0;
     let oneNameCalculated: number[] = [];
     for (var i = 0; i < nameToNum.length; i++) {
@@ -261,11 +259,13 @@ export class CalculatorPage implements OnInit {
     }
   }
 
+  //still big error here IN SOULD WISH WITH SYL AND W
   //returns numerological soul wish 
   soulWishCal(name) {
     let res: string[] = []; 
     let cnt: number = 0;
 
+    //get every name split with " "
     while (true) {
       if (name.split(' ')[cnt] !== undefined) {
         res.push(name.split(' ')[cnt]);
@@ -275,19 +275,19 @@ export class CalculatorPage implements OnInit {
       cnt++;
     }
 
+    //iteration over every name which was split before and
+    //check if vocal and add every digit to nameToNum
     cnt = 0;
     let nameToNum: number[] = [];
     let tmpNumber: number;
     let tmpSyl: string[];
+    
     while (cnt < res.length) {
       tmpNumber = 0;
-      
-      //console.log(this.syllableCal(res[cnt]));
       tmpSyl = this.syllableCal(res[cnt]);
-      
       if (tmpSyl) {
         for (var i = 0; i < tmpSyl.length; i++) {
-          if (tmpSyl[i].length == 2) { 
+          if (tmpSyl[i].length == 2) {
             if ((tmpSyl[i].charAt(0)) == 'a' && tmpSyl[i].charAt(1) == 'y') {
               tmpNumber += 8;
             } else if ((tmpSyl[i].charAt(0)) == 'e' && tmpSyl[i].charAt(1) == 'y') {
@@ -302,6 +302,16 @@ export class CalculatorPage implements OnInit {
           } else {
             if (tmpSyl[i] == 'y') {
               tmpNumber += 7;
+            } else if (tmpSyl[i] == 'a') {
+              tmpNumber += 1;
+            } else if (tmpSyl[i] == 'e') {
+              tmpNumber += 5;
+            } else if (tmpSyl[i] == 'i') {
+              tmpNumber += 9;
+            } else if (tmpSyl[i] == 'o') {
+              tmpNumber += 6;
+            } else if (tmpSyl[i] == 'u') {
+              tmpNumber += 3;
             }
           }
         }
@@ -311,31 +321,30 @@ export class CalculatorPage implements OnInit {
             if ((res[cnt].charAt(i+1)).toUpperCase() == 'W') {
               tmpNumber += 5;
             }
-            tmpNumber += 1;
+            //tmpNumber += 1;
           } else if ((res[cnt].charAt(i)).toUpperCase() == 'E') {
             if ((res[cnt].charAt(i+1)).toUpperCase() == 'W') {
               tmpNumber += 5;
             }
-            tmpNumber += 5;
+            //tmpNumber += 5;
           } else if ((res[cnt].charAt(i)).toUpperCase() == 'I') {
             if ((res[cnt].charAt(i+1)).toUpperCase() == 'W') {
               tmpNumber += 5;
             }
-            tmpNumber += 9;
+            //tmpNumber += 9;
           } else if ((res[cnt].charAt(i)).toUpperCase() == 'O' || (res[cnt].charAt(i)).toUpperCase() == 'Ö') {
             if ((res[cnt].charAt(i+1)).toUpperCase() == 'W') {
               tmpNumber += 5;
             }
-            tmpNumber += 6;
+            //tmpNumber += 6;
           } else if ((res[cnt].charAt(i)).toUpperCase() == 'U' || (res[cnt].charAt(i)).toUpperCase() == 'Ü') {
             if ((res[cnt].charAt(i+1)).toUpperCase() == 'W') {
               tmpNumber += 5;
             }
-            tmpNumber += 3;
+            //tmpNumber += 3;
           }
         }
       }
-      //hier wieder in while schleife
       nameToNum.push(tmpNumber);
       cnt++;
     }
@@ -344,7 +353,8 @@ export class CalculatorPage implements OnInit {
     let oneNameCalculated: number[] = [];
     for (var i = 0; i < nameToNum.length; i++) {
       while(true) {
-        if (nameToNum[i] <= 9 || nameToNum[i] == 11 || nameToNum[i] == 13 || nameToNum[i] == 14 || nameToNum[i] == 16 || nameToNum[i] == 19 || nameToNum[i] == 22 || nameToNum[i] == 33) {
+        if (nameToNum[i] <= 9 || nameToNum[i] == 11 || nameToNum[i] == 13 || nameToNum[i] == 14 || 
+          nameToNum[i] == 16 || nameToNum[i] == 19 || nameToNum[i] == 22 || nameToNum[i] == 33) {
           oneNameCalculated.push(nameToNum[i]);
           break;
         } else {
@@ -577,7 +587,6 @@ export class CalculatorPage implements OnInit {
 
   dayofbirthCal() {
     let tmpDay: number = Number((this.birthday.split('T')[0]).split('-')[2]);
-    console.log("before while: " + tmpDay);
     while(true) {
       if (tmpDay <= 9) {
         return tmpDay.toString();
@@ -596,9 +605,7 @@ export class CalculatorPage implements OnInit {
       } else if (tmpDay == 33) {
         return "33/6";
       } else {
-        console.log(tmpDay);
         tmpDay = this.crosssumOne(tmpDay.toString());
-        console.log(tmpDay);
       }
     }
   }
