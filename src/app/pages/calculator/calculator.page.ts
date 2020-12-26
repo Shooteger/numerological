@@ -198,7 +198,7 @@ export class CalculatorPage implements OnInit {
     if (this.titles != "") {
       name += " " + this.titles;
     }
-    
+
     while (true) {
       if (name.split(' ')[cnt] !== undefined) {
         res.push(name.split(' ')[cnt]);
@@ -413,10 +413,6 @@ export class CalculatorPage implements OnInit {
   //returns numerological soul Focus 
   soulFocusCal() {
     let name: string = this.fullname.split(' ')[0];
-
-    //for dr. or abrehention with a point
-    if (name.includes('.'))
-      name = this.fullname.split(' ')[1];
 
     for (var i = 0; i < name.length; i++) {
       console.log(name.charAt(i));
