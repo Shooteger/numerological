@@ -21,6 +21,7 @@ export class CalculatorPage implements OnInit {
   buttonClicked: boolean;
 
   fullname: string;
+  titles: string;
   dayofbirth: string;
   lifejouney: string;
   expression: string;
@@ -178,11 +179,26 @@ export class CalculatorPage implements OnInit {
       this.isenabled = true;
   }
 
+  setTitles(title) {
+    //sets all varibales null for new calculation
+    this.buttonClicked = false;
+    this.lessons = [];
+    this.lessons_of_occuring = "";
+    this.lifejouney = '';
+
+    //sets name
+    this.titles = title;
+  }
+
   //return expression get one parameter a atring
   expressionCal(name: string) {
     let res: string[] = []; 
     let cnt: number = 0;
 
+    if (this.titles != "") {
+      name += " " + this.titles;
+    }
+    
     while (true) {
       if (name.split(' ')[cnt] !== undefined) {
         res.push(name.split(' ')[cnt]);
@@ -264,6 +280,10 @@ export class CalculatorPage implements OnInit {
   soulWishCal(name) {
     let res: string[] = []; 
     let cnt: number = 0;
+
+    if (this.titles != "") {
+      name += " " + this.titles;
+    }
 
     //get every name split with " "
     while (true) {
@@ -391,9 +411,15 @@ export class CalculatorPage implements OnInit {
   }
 
   //returns numerological soul Focus 
-  soulFocusCal(name) {
-    name = name.split(' ')[0];
+  soulFocusCal() {
+    let name: string = this.fullname.split(' ')[0];
+
+    //for dr. or abrehention with a point
+    if (name.includes('.'))
+      name = this.fullname.split(' ')[1];
+
     for (var i = 0; i < name.length; i++) {
+      console.log(name.charAt(i));
       if ((name.charAt(i)).toUpperCase() == 'A') { //only here A returns a 2 !!
         return 2;
       } else if ((name.charAt(i)).toUpperCase() == 'E') {
@@ -618,7 +644,7 @@ export class CalculatorPage implements OnInit {
                           (this.birthday.split('T')[0]).split('-')[0])).toString();
     this.expression = (this.expressionCal(this.fullname)).toString();
     this.soulwish = (this.soulWishCal(this.fullname)).toString();
-    this.soulfocus = (this.soulFocusCal(this.fullname)).toString();
+    this.soulfocus = (this.soulFocusCal()).toString();
     this.compensation = (this.compensationCal()).toString();
     this.strengthday = Number((this.birthday.split('T')[0]).split('-')[2]).toString();
     this.lessonstolearn = this.lessonsToLearnCal();
@@ -666,6 +692,7 @@ export class CalculatorPage implements OnInit {
     this.buttonClicked = false;
 
     this.fullname = "";
+    this.titles = ""
     this.dayofbirth = "";
     this.lifejouney = "";
     this.expression = "";

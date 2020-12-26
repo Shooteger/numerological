@@ -16,9 +16,15 @@
   </ion-card>
 
   <ion-item>
-    <ion-label floating  ><b>Name: </b></ion-label>
-    <ion-input type="text" [(ngModel)]='fullname' name="fullname" (ionChange)="setName($event.target.value) "></ion-input>
+    <ion-label floating  ><b>Titles: </b></ion-label>
+    <ion-input type="text" [(ngModel)]='titles' name="titles" (ionChange)="setTitles($event.target.value) " placeholder="Enter titles only if necessary"></ion-input>
   </ion-item>
+
+  <ion-item>
+    <ion-label floating  ><b>Name: </b></ion-label>
+    <ion-input type="text" [(ngModel)]='fullname' name="fullname" (ionChange)="setName($event.target.value) " placeholder="Enter names"></ion-input>
+  </ion-item>
+  
 
   <ion-item>
     <ion-label>Select Date</ion-label>
