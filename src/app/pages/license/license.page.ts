@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./license.page.scss'],
 })
 export class LicensePage implements OnInit {
-
+  anio: number = new Date().getFullYear();
   constructor() { }
 
   ngOnInit() {

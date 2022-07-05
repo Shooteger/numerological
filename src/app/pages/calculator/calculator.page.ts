@@ -54,10 +54,11 @@ export class CalculatorPage implements OnInit {
   //return the equivalent number of given letter
   letterToNumber(letter) {
     letter = letter.toUpperCase();
+    letter = letter.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     if (letter == 'A' || letter == 'J' || letter == 'S' || letter == 'Ä')
       return 1;
     else if (letter == 'B' || letter == 'K' || letter == 'T')
-      return 2;
+      return 2; 
     else if (letter == 'C' || letter == 'L' || letter == 'U' || letter == 'Ü')
       return 3;
     else if (letter == 'D' || letter == 'M' || letter == 'V')
